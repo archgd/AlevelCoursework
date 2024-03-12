@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS user
     forename VARCHAR(30) NOT NULL,
     surname  VARCHAR(30) NOT NULL,
     dob      VARCHAR(10) NOT NULL,
+    dob      VARCHAR(10) NOT NULL,
     PRIMARY KEY (email)
 );
 
