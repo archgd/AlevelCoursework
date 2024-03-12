@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+     <link rel="stylesheet" href="../static/style.css">
+
+
+    <title>Workouts</title>
+</head>
+<body>
+
+<nav class="w3-bar w3-light-gray">
+  <a href="HomePage.html" class="w3-button w3-bar-item">Home</a>
+  <a href="Workouts.html" class="w3-button w3-bar-item">Workouts</a>
+  <a href="MyData.html" class="w3-button w3-bar-item">My Data</a>
+  <a href="MyAccount.html" class="w3-button w3-bar-item">My Account</a>
+</nav>
+
+<nav class="w3-bar w3-gray">
+  <a href="CustomWorkout.html" class="w3-button w3-bar-item">Create Custom Workout</a>
+  <a href="PrePlannedWorkouts.html" class="w3-button w3-bar-item">Pre-Planned Workouts</a>
+  <a href="OutdoorWorkouts.html" class="w3-button w3-bar-item">Outdoor Workouts</a>
+</nav>
+
+<section class="w3-container w3-content w3-center" style="max-width:600px">
+  <h2 class="w3-wide">Gym App</h2>
+  <p class="w3-opacity">Welcome to Outdoor Workouts</p>
+</section>
+
+<div class="log-form dropdown-content">
+    <h2>Record Outdoor Workout</h2>
+
+  <form action =" /" method="POST">
+      <select name="ExerciseType" id="OutdoorWorkout" required autofocus >
+  <option value="Run">Run </option>
+  <option value="Walk">Walk</option>
+  <option value="Swim">Swim</option>
+  <option value="Cycle">Cycle</option>
+</select>
+    <input type="text" name="Distance" placeholder="Distance (Km)" required/>
+    <input type="text" name="TimeTaken" placeholder="Time Taken (Minutes)" required/>
+    <input type="date" name="DateCompleted" placeholder="Date Completed" required/>
+  <button type="Submit" class="btn"> Record Exercise</button>
+
+
+  </form>
+</div>
+  </article>
+</section>
+
+</body>
+</html>
