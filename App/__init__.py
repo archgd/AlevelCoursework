@@ -1,5 +1,5 @@
 import sqlite3
-
+import flask
 from flask import Flask, render_template, request, session, redirect, url_for
 
 from App import db
@@ -10,10 +10,7 @@ app = Flask(__name__)
 @app.route('/user/HomePage')
 def home():
     return render_template('HomePage.html', active_page='Homepage.html ')
-    if request.method == "POST":
-        return render_template("HomePage.html")
-    else:
-        return render_template("Workouts.html")
+    
 
 
 @app.route('/user/Workouts', methods=['POST', 'GET'])
