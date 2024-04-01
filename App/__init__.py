@@ -4,7 +4,6 @@ from flask import Flask, render_template, request, session, redirect, url_for
 
 from App import db
 
-
 app = Flask(__name__)
 
 
@@ -44,17 +43,17 @@ def OutdoorWorkouts():
 def login():
     if request.method == "GET":
         return render_template("LoginPage.html")
-    #default loads the login page
+    # default loads the login page
 
-    elif request.method == "POST": #only runs if the user submits the login form
+    elif request.method == "POST":  # only runs if the user submits the login form
         email = request.form["email"]
         password = request.form["password"]
-        user = [(email, password)] #stores the email and password from the form as a local variable
+        user = [(email, password)]  # stores the email and password from the form as a local variable
 
         try:
-            if db.get_user(email) == user: #checks if the email matches the password stored in the database
-                session['username'] = request.form['email'] #sets the session username to the email address
-                return redirect(url_for('home')) #redirects the user to the home page of the website
+            if db.get_user(email) == user:  # checks if the email matches the password stored in the database
+                session['username'] = request.form['email']  # sets the session username to the email address
+                return redirect(url_for('home'))  # redirects the user to the home page of the website
 
             else:
                 text = "Enter a valid email and password"
@@ -77,10 +76,9 @@ def register():
 
         db.create_user(email, password, forename, surname, dob)
         print("about to return to login!")
+        print("checking that the github print works")
         return redirect(url_for('login'))
     return render_template("SignUp.html")
-
-
 
 
 if __name__ == '__main__':
