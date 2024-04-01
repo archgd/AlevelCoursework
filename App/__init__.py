@@ -78,7 +78,6 @@ def register():
         db.create_user(email, password, forename, surname, dob)
         print("about to return to login!")
         return redirect(url_for('login'))
-
     return render_template("SignUp.html")
 
 
