@@ -29,8 +29,13 @@ def update_user(email, oldPassword, newPassword):
         raise e
 
 
-def get_user(conn, email, password, forename, surname, age):
-    pass
+def get_user(email, password):
+    try:
+        sql = f''' SELECT email and password from user WHERE email = '{email}';'''
+        run_query(sql)
+    except sqlite3.Error as e:
+        raise e
+
 
 
 def login(emailcheck, passwordcheck):
@@ -109,7 +114,7 @@ def check_name(forename, surname):
         raise ValueError("the name you have entered is too long or too short")
 
 
-def check_dob():
+# def check_dob():
 
 
 
