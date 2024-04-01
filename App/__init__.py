@@ -76,7 +76,7 @@ def register():
 
         db.create_user(email, password, forename, surname, dob)
         print("about to return to login!")
-        print("checking that the github print works")
+        print("checking that the github push works from the MAC")
         return redirect(url_for('login'))
     return render_template("SignUp.html")
 
