@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS outdoorworkouts
     ExerciseType VARCHAR(40) NOT NULL,
     Distance integer(4) NOT NULL,
     TimeTaken integer(4) NOT NULL,
-    DateCompleted  DATE NOT NULL,
+    DateCompleted  DATETIME NOT NULL,
     FOREIGN KEY (email) REFERENCES user(email)
 
 
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS gymworkouts
     Exercise VARCHAR(40) NOT NULL,
     Reps integer(4) NOT NULL,
     Weight integer(3) NOT NULL,
-    DateDone DATE NOT NULL,
+    DateDone DATETIME NOT NULL,
     FOREIGN KEY (email) REFERENCES user(email)
 
 
@@ -37,9 +37,11 @@ CREATE TABLE IF NOT EXISTS preplannedworkouts
 (
     email VARCHAR(25) NOT NULL UNIQUE,
     Workout VARCHAR(40) NOT NULL,
-    Date DATE NOT NULL,
+    Date DATETIME NOT NULL,
     FOREIGN KEY(email) REFERENCES user(email)
 )
 
--- DROP table users;
--- DROP table outdoorworkouts
+-- -- DROP table users;
+-- DROP table outdoorworkouts;
+-- DROP table gymworkouts;
+-- DROP table preplannedworkouts;

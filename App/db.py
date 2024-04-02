@@ -1,3 +1,4 @@
+import datetime
 import sqlite3
 import re
 from sqlite3 import Error
@@ -12,14 +13,6 @@ def create_user(email, password, forename, surname, dob):
     except sqlite3.Error as e:
         print(e)
 
-
-def create_outdoor_workout(ExerciseType, Distance, TimeTaken, DateCompleted):
-    try:
-        sql = f'''INSERT INTO outdoorworkouts VALUES ('{ExerciseType}', '{Distance}', '{TimeTaken}','{DateCompleted}');'''
-        run_query(sql)
-
-    except sqlite3.Error as e:
-        print(e)
 
 def update_user(email, oldPassword, newPassword):
     try:
@@ -37,10 +30,10 @@ def get_user(email, password):
         raise e
 
 
-
 def login(emailcheck, passwordcheck):
     sql1 = f'''SELECT * FROM user WHERE email = '{emailcheck}' AND password = '{passwordcheck}';'''
     bool(run_query(sql1))
+
 
 def remove_user(emailcheck, passwordcheck):
     sql1 = f'''DELETE FROM user WHERE email = '{emailcheck}' AND password = '{passwordcheck}';'''
@@ -61,12 +54,14 @@ def run_query(query):
     finally:
         conn.close()
 
+
 def clear_table(table):
     try:
         sql = f'''DELETE FROM 'user';'''
         run_query(sql)
     except sqlite3.Error as e:
         raise e
+
 
 def get_all_users():
     #gets all users in a database
@@ -114,16 +109,34 @@ def check_name(forename, surname):
         raise ValueError("the name you have entered is too long or too short")
 
 
-# def check_dob():
+def create_custom_workout(email, exercise, weight, reps):
+    date = datetime
+    try:
+        sql = f'''INSERT INTO gymworkouts VALUES ('{email}', '{exercise}', '{weight}','{reps}','{date}');'''
+        run_query(sql)
+
+    except sqlite3.Error as e:
+        print(e)
 
 
+def record_planned_workout(email, Workout):
+    date = datetime
+    try:
+        sql = f'''INSERT INTO preplannedworkouts VALUES ('{email}', '{Workout}', '{date}');'''
+        run_query(sql)
+
+    except sqlite3.Error as e:
+        print(e)
 
 
+def create_outdoor_workout(email, ExerciseType, Distance, TimeTaken):
+    date = datetime
+    try:
+        sql = f'''INSERT INTO outdoorworkouts VALUES ('{email}', '{ExerciseType}', '{Distance}','{TimeTaken}','{date}');'''
+        run_query(sql)
 
-
-
-
-
+    except sqlite3.Error as e:
+        print(e)
 
 
 if __name__ == "__main__":
