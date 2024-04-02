@@ -39,7 +39,10 @@ CREATE TABLE IF NOT EXISTS preplannedworkouts
     Workout VARCHAR(40) NOT NULL,
     Date DATETIME NOT NULL,
     FOREIGN KEY(email) REFERENCES user(email)
-)
+);
+
+
+
 
 -- -- DROP table users;
 -- DROP table outdoorworkouts;

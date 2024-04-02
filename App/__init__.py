@@ -71,58 +71,59 @@ def register():
         surname = request.form["surname"]
         dob = request.form["dob"]
 
-        db.create_user(email, password, forename, surname, dob)
+
+
+        db.create_user(email.lower(), password, forename.lower(), surname.lower(), dob)
         return redirect(url_for('login'))
     return render_template("SignUp.html")
 
 
-@app.route('/user/Custom', methods=['POST', 'GET'])
-def GymWorkouts():
-    if request.method == "GET":
-        return render_template('CustomWorkouts.html')
-    elif request.method == "POST":
-        email = ['username']
-        Exercise = request.form["exercise"]
-        Reps = request.form["reps"]
-        Weight = request.form["weight"]
-
-        db.create_custom_workout(email, Exercise, Reps, Weight)
-        return redirect(url_for('home'))
-    return render_template("Workouts.html")
-
-
-@app.route('/user/Outdoor', methods=['POST', 'GET'])
-def OutdoorWorkouts():
-    if request.method == "GET":
-        return render_template('OutdoorWorkouts.html')
-    elif request.method == "POST":
-        email = ['username']
-        ExerciseType = request.form["exercisetype"]
-        Distance = request.form["distance"]
-        TimeTaken = request.form["timetaken"]
-
-        db.create_outdoor_workout(email, ExerciseType, Distance, TimeTaken)
-        return redirect(url_for('home'))
-    return render_template("OutdoorWorkouts.html")
-
-
-@app.route('/', methods=['POST', 'GET'])
-def PrePlannedWorkouts():
-    if request.method == "GET":
-        return render_template('PrePlannedWorkouts.html')
-    elif request.method == "POST":
-        email = ['username']
-        Workout = request.form["workout"]
-
-        db.record_planned_workout(email, Workout)
-        return redirect(url_for('home'))
-    return render_template("PrePlannedWorkouts.html")
-
-
-
+# @app.route('/user/Custom', methods=['POST', 'GET'])
+# def GymWorkouts():
+#     if request.method == "GET":
+#         return render_template('CustomWorkouts.html')
+#     elif request.method == "POST":
+#         email = ['username']
+#         Exercise = request.form["exercise"]
+#         Reps = request.form["reps"]
+#         Weight = request.form["weight"]
+#
+#         db.create_custom_workout(email, Exercise, Reps, Weight)
+#         return redirect(url_for('home'))
+#     return render_template("Workouts.html")
+#
+#
+# @app.route('/user/Outdoor', methods=['POST', 'GET'])
+# def OutdoorWorkouts():
+#     if request.method == "GET":
+#         return render_template('OutdoorWorkouts.html')
+#     elif request.method == "POST":
+#         email = ['username']
+#         ExerciseType = request.form["exercisetype"]
+#         Distance = request.form["distance"]
+#         TimeTaken = request.form["timetaken"]
+#
+#         db.create_outdoor_workout(email, ExerciseType, Distance, TimeTaken)
+#         return redirect(url_for('home'))
+#     return render_template("OutdoorWorkouts.html")
+#
+#
+# @app.route('/preplannedworkouts', methods=['POST', 'GET'])
+# def PrePlannedWorkouts():
+#     if request.method == "GET":
+#         return render_template('PrePlannedWorkouts.html')
+#     elif request.method == "POST":
+#         email = ['username']
+#         Workout = request.form["workout"]
+#
+#         db.record_planned_workout(email, Workout)
+#         return redirect(url_for('home'))
+#     return render_template("PrePlannedWorkouts.html")
+#
 
 if __name__ == '__main__':
     app.run()
+
 
 
 # validation can be done in JS and HTML5 doesn't have to be server side :)

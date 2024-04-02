@@ -5,6 +5,7 @@ from sqlite3 import Error
 import json
 
 
+
 def create_user(email, password, forename, surname, dob):
     try:
         sql = f'''INSERT INTO user VALUES ('{email}', '{password}', '{forename}','{surname}','{dob}');'''
