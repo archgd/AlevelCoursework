@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+     <link rel="stylesheet" href="../static/style.css">
+
+
+    <title>Custom Workouts</title>
+</head>
+<body>
+
+<nav class="w3-bar w3-light-gray">
+  <a href="HomePage.html" class="w3-button w3-bar-item">Home</a>
+  <a href="Workouts.html" class="w3-button w3-bar-item">Workouts</a>
+  <a href="MyData.html" class="w3-button w3-bar-item">My Data</a>
+  <a href="MyAccount.html" class="w3-button w3-bar-item">My Account</a>
+</nav>
+
+<nav class="w3-bar w3-gray">
+  <a href="CustomWorkout.html" class="w3-button w3-bar-item">Create Custom Workout</a>
+  <a href="PrePlannedWorkouts.html" class="w3-button w3-bar-item">Pre-Planned Workouts</a>
+  <a href="OutdoorWorkouts.html" class="w3-button w3-bar-item">Outdoor Workouts</a>
+</nav>
+
+<section class="w3-container w3-content w3-center" style="max-width:600px">
+  <h2 class="w3-wide">Gym App</h2>
+  <p class="w3-opacity">Welcome to Custom Workouts</p>
+</section>
+
+<section class="w3-container w3-content w3-left" style="max-width: 300px">
+    <p style="align-content: space-evenly"> To create a custom workout just start by adding exercises from the drop-down menu, please enter the amount of reps you have completed, the weight they were completed at, the date it was completed and your email</p>
+
+</section>
+
+<div class="log-form dropdown-content">
+    <h2>Choose exercise</h2>
+    <form action =" /" method="POST">
+      <select name="Type of Exercise" id="exercise" required autofocus >
+          <option value="Please select an exercise">please select an exercise </option>
+          <option value="Dumbbell curl">dumbbell curl </option>
+          <option value="Hammer curl">Hammer Curl</option>
+          <option value="Overhead tricep extension">overhead tricep extension</option>
+          <option value="Lat pull down">Lat pull down</option>
+          <option value="Dumbbell rows">dumbbell rows</option>
+          <option value="Front squat">front squat</option>
+          <option value="Back Squat">back squat</option>
+          <option value="Goblet squat">goblet squat</option>
+          <option value="Dumbbell press">dumbbell press</option>
+          <option value="Bench press">bench press</option>
+          <option value="Shoulder press">shoulder press</option>
+          <option value="Weighted lunge">weighted lunge</option>
+          <option value="Leg press">leg press</option>
+          <option value="Chest fly">chest fly</option>
+          <option value="Landmines">landmines</option>
+          <option value="Bulgarian split squat">bulgarian split squat</option>
+          <option value="Crunch">crunch</option>
+
+          <input type="text" name="Email" placeholder="Email" required/>
+          <input type="text" name="Reps" placeholder="Reps" required/>
+          <input type="text" name="Weight" placeholder="Weight" required/>
+          <input type="date" name="Date completed" placeholder="Date Completed" required/>
+
+
+</select>
+        <button type="Submit" class="btn"> Select Workout</button>
+    </form>
+</div>
+  </article>
+</section>
+
+</body>
+</html>
