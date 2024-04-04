@@ -10,24 +10,24 @@ CREATE TABLE IF NOT EXISTS user
 
 CREATE TABLE IF NOT EXISTS outdoorworkouts
 (
-    email VARCHAR(25) NOT NULL UNIQUE,
+    email VARCHAR(25) NOT NULL,
     ExerciseType VARCHAR(40) NOT NULL,
     Distance integer(4) NOT NULL,
     TimeTaken integer(4) NOT NULL,
-    DateCompleted  DATETIME NOT NULL,
-    FOREIGN KEY (email) REFERENCES user(email)
+    DateCompleted  DATETIME NOT NULL
+
 
 
 );
 
 CREATE TABLE IF NOT EXISTS gymworkouts
 (
-    email VARCHAR(25) NOT NULL UNIQUE,
+    email VARCHAR(25) NOT NULL,
     Exercise VARCHAR(40) NOT NULL,
     Reps integer(4) NOT NULL,
     Weight integer(3) NOT NULL,
-    DateDone DATETIME NOT NULL,
-    FOREIGN KEY (email) REFERENCES user(email)
+    DateDone DATETIME NOT NULL
+
 
 
 
@@ -35,10 +35,10 @@ CREATE TABLE IF NOT EXISTS gymworkouts
 
 CREATE TABLE IF NOT EXISTS preplannedworkouts
 (
-    email VARCHAR(25) NOT NULL UNIQUE,
+    email VARCHAR(25) NOT NULL,
     Workout VARCHAR(40) NOT NULL,
-    Date DATETIME NOT NULL,
-    FOREIGN KEY(email) REFERENCES user(email)
+    Date DATETIME NOT NULL
+
 );
 
 

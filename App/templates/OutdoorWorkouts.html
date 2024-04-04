@@ -33,16 +33,27 @@
     <h2>Record Outdoor Workout</h2>
 
   <form action =" /" method="POST">
-      <select name="ExerciseType" id="OutdoorWorkout" required autofocus >
+      <label for="OutdoorWorkout"></label><select name="exercisetype" id="OutdoorWorkout" required autofocus >
   <option value="Run">Run </option>
   <option value="Walk">Walk</option>
   <option value="Swim">Swim</option>
   <option value="Cycle">Cycle</option>
 </select>
-    <input type="text" name="Distance" placeholder="Distance (Km)" required/>
-    <input type="text" name="TimeTaken" placeholder="Time Taken (Minutes)" required/>
-    <input type="date" name="DateCompleted" placeholder="Date Completed" required/>
-  <button type="Submit" class="btn"> Record Exercise</button>
+      <label>
+          <input type="text" name="distance" placeholder="Distance (Km)" required/>
+      </label>
+      <label>
+          <input type="text" name="timetaken" placeholder="Time Taken (Minutes)" required/>
+      </label>
+      <label>
+          <input type="text" name="email" placeholder="Email" required/>
+      </label>
+
+      <label>
+          <input type="date" name="date" placeholder="Date Completed" required/>
+      </label>
+
+      <button type="Submit" class="btn"> Record Exercise</button>
 
 
   </form>

@@ -119,20 +119,18 @@ def create_custom_workout(email, exercise, weight, reps, datedone):
         print(e)
 
 
-def record_planned_workout(email, Workout):
-    date = datetime
+def record_planned_workout(email, workout, datecompleted):
     try:
-        sql = f'''INSERT INTO preplannedworkouts VALUES ('{email}', '{Workout}', '{date}');'''
+        sql = f'''INSERT INTO preplannedworkouts VALUES ('{email}', '{workout}', '{datecompleted}');'''
         run_query(sql)
 
     except sqlite3.Error as e:
         print(e)
 
 
-def create_outdoor_workout(email, ExerciseType, Distance, TimeTaken):
-    date = datetime
+def create_outdoor_workout(email, exercisetype, distance, timetaken, date):
     try:
-        sql = f'''INSERT INTO outdoorworkouts VALUES ('{email}', '{ExerciseType}', '{Distance}','{TimeTaken}','{date}');'''
+        sql = f'''INSERT INTO outdoorworkouts VALUES ('{email}', '{exercisetype}', '{distance}','{timetaken}','{date}');'''
         run_query(sql)
 
     except sqlite3.Error as e:
