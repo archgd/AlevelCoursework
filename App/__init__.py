@@ -60,7 +60,7 @@ def login():
             return redirect(url_for('login', error=e))
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/11', methods=['POST', 'GET'])
 def register():
     if request.method == "GET":
         return render_template('SignUp.html')
@@ -71,26 +71,25 @@ def register():
         surname = request.form["surname"]
         dob = request.form["dob"]
 
-
-
         db.create_user(email.lower(), password, forename.lower(), surname.lower(), dob)
         return redirect(url_for('login'))
     return render_template("SignUp.html")
 
 
-# @app.route('/user/Custom', methods=['POST', 'GET'])
-# def GymWorkouts():
-#     if request.method == "GET":
-#         return render_template('CustomWorkouts.html')
-#     elif request.method == "POST":
-#         email = ['username']
-#         Exercise = request.form["exercise"]
-#         Reps = request.form["reps"]
-#         Weight = request.form["weight"]
-#
-#         db.create_custom_workout(email, Exercise, Reps, Weight)
-#         return redirect(url_for('home'))
-#     return render_template("Workouts.html")
+@app.route('/', methods=['POST', 'GET'])
+def GymWorkouts():
+    if request.method == "GET":
+        return render_template('CustomWorkouts.html')
+    elif request.method == "POST":
+        Exercise = request.form["exercise"]
+        email = request.form['email']
+        Reps = request.form["reps"]
+        Weight = request.form["weight"]
+        DateDone = request.form["date completed"]
+
+        db.create_custom_workout(email, Exercise, Reps, Weight, DateDone)
+        return redirect(url_for('GymWorkouts'))
+    return render_template("CustomWorkouts.html")
 #
 #
 # @app.route('/user/Outdoor', methods=['POST', 'GET'])

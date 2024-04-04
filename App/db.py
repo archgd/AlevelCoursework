@@ -110,10 +110,9 @@ def check_name(forename, surname):
         raise ValueError("the name you have entered is too long or too short")
 
 
-def create_custom_workout(email, exercise, weight, reps):
-    date = datetime
+def create_custom_workout(email, exercise, weight, reps, datedone):
     try:
-        sql = f'''INSERT INTO gymworkouts VALUES ('{email}', '{exercise}', '{weight}','{reps}','{date}');'''
+        sql = f'''INSERT INTO gymworkouts VALUES ('{email}', '{exercise}', '{weight}','{reps}','{datedone}');'''
         run_query(sql)
 
     except sqlite3.Error as e:

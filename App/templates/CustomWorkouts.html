@@ -29,15 +29,18 @@
   <p class="w3-opacity">Welcome to Custom Workouts</p>
 </section>
 
-<section class="w3-container w3-content w3-left" style="max-width: 300px">
-    <p style="align-content: space-evenly"> To create a custom workout just start by adding exercises from the drop-down menu, please enter the amount of reps you have completed, the weight they were completed at, the date it was completed and your email</p>
 
+<section class="w3-container w3-content w3-left" style="max-width: 300px">
+    <section class="w3- w3-gray w3-container" style="height: 500px">
+    <p style="align-content: space-evenly"> To create a custom workout just start by adding exercises from the drop-down menu, please enter the amount of reps you have completed, the weight they were completed at, the date it was completed and your email</p>
+        <p style="align-content: space-evenly"> Custom workouts let you tailor your workouts to you. If you are new to the gym we recommend using pre-planned workouts. If you would like to record a run, swim, cycle or walk please use the outdoor workouts section</p>
+    </section>
 </section>
 
 <div class="log-form dropdown-content">
     <h2>Choose exercise</h2>
     <form action =" /" method="POST">
-      <select name="Type of Exercise" id="exercise" required autofocus >
+        <label for="exercise"></label><select name="exercise" id="exercise" required autofocus >
           <option value="Please select an exercise">please select an exercise </option>
           <option value="Dumbbell curl">dumbbell curl </option>
           <option value="Hammer curl">Hammer Curl</option>
@@ -57,13 +60,21 @@
           <option value="Bulgarian split squat">bulgarian split squat</option>
           <option value="Crunch">crunch</option>
 
-          <input type="text" name="Email" placeholder="Email" required/>
-          <input type="text" name="Reps" placeholder="Reps" required/>
-          <input type="text" name="Weight" placeholder="Weight" required/>
-          <input type="date" name="Date completed" placeholder="Date Completed" required/>
+          <label>
+              <input type="text" name="email" placeholder="Email" required/>
+          </label>
+          <label>
+              <input type="text" name="reps" placeholder="Reps" required/>
+          </label>
+          <label>
+              <input type="text" name="weight" placeholder="Weight" required/>
+          </label>
+          <label>
+              <input type="date" name="date completed" placeholder="Date Completed" required/>
+          </label>
 
 
-</select>
+      </select>
         <button type="Submit" class="btn"> Select Workout</button>
     </form>
 </div>
