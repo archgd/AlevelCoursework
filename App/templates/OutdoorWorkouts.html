@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<nav class="w3-bar w3-light-gray">
+<nav class="w3-bar w3-black w3-text-white">
   <a href="HomePage.html" class="w3-button w3-bar-item">Home</a>
   <a href="Workouts.html" class="w3-button w3-bar-item">Workouts</a>
   <a href="MyData.html" class="w3-button w3-bar-item">My Data</a>
@@ -19,15 +19,23 @@
 </nav>
 
 <nav class="w3-bar w3-gray">
-  <a href="CustomWorkout.html" class="w3-button w3-bar-item">Create Custom Workout</a>
+  <a href="CustomWorkouts.html" class="w3-button w3-bar-item">Create Custom Workout</a>
   <a href="PrePlannedWorkouts.html" class="w3-button w3-bar-item">Pre-Planned Workouts</a>
   <a href="OutdoorWorkouts.html" class="w3-button w3-bar-item">Outdoor Workouts</a>
 </nav>
 
-<section class="w3-container w3-content w3-center" style="max-width:600px">
+
+<style>
+body {
+  background-image: url('gym.jpeg');
+}
+</style>
+
+<section class="w3-container w3-content w3-center w3-text-white w3-black w3-opacity" style="max-width:6000px">
   <h2 class="w3-wide">Gym App</h2>
-  <p class="w3-opacity">Welcome to Outdoor Workouts</p>
+  <p class>Welcome to Outdoor Workouts</p>
 </section>
+
 
 <div class="log-form dropdown-content">
     <h2>Record Outdoor Workout</h2>
@@ -40,20 +48,20 @@
   <option value="Cycle">Cycle</option>
 </select>
       <label>
-          <input type="text" name="distance" placeholder="Distance (Km)" required/>
+          <input type="text" name="distance" placeholder="Distance (Km)" required min="1" max="999"/>
       </label>
       <label>
-          <input type="text" name="timetaken" placeholder="Time Taken (Minutes)" required/>
+          <input type="text" name="timetaken" placeholder="Time Taken (Minutes)" required min="1" max="999"/>
       </label>
       <label>
-          <input type="text" name="email" placeholder="Email" required/>
+          <input type="email" name="email" placeholder="Email" required maxlength="30"/>
       </label>
 
       <label>
-          <input type="date" name="date" placeholder="Date Completed" required/>
+          <input type="date" name="date" placeholder="Date Completed" required max="datetime"/>
       </label>
 
-      <button type="Submit" class="btn"> Record Exercise</button>
+      <button type="Submit" class="btn w3-red w3-hover-opacity"> Record Exercise</button>
 
 
   </form>

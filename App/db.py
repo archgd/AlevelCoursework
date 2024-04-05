@@ -25,7 +25,7 @@ def update_user(email, oldPassword, newPassword):
 
 def get_user(email, password):
     try:
-        sql = f''' SELECT email and password from user WHERE email = '{email}';'''
+        sql = f''' SELECT email and password from user WHERE email = '{email}', '{password}';'''
         run_query(sql)
     except sqlite3.Error as e:
         raise e

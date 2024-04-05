@@ -19,7 +19,7 @@ def workouts():
 
 
 
-@app.route('/user/LoginPage', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def login():
     if request.method == "GET":
         return render_template("LoginPage.html")
@@ -31,13 +31,13 @@ def login():
         user = [(email, password)]  # stores the email and password from the form as a local variable
 
         try:
-            if db.get_user(email) == user:  # checks if the email matches the password stored in the database
+            if db.get_user(email, password) == user:  # checks if the email matches the password stored in the database
                 session['username'] = request.form['email']  # sets the session username to the email address
-                return redirect(url_for('home'))  # redirects the user to the home page of the website
+                return redirect(url_for('workouts'))  # redirects the user to the home page of the website
 
             else:
                 text = "Enter a valid email and password"
-                return redirect(url_for('login', text=text))
+                return redirect(url_for('login'))
         except sqlite3.Error as e:
             print(e)
             return redirect(url_for('login', error=e))
@@ -77,7 +77,7 @@ def GymWorkouts():
 
 #
 #
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/1', methods=['POST', 'GET'])
 def OutdoorWorkouts():
     if request.method == "GET":
         return render_template('OutdoorWorkouts.html')
