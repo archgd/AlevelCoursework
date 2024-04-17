@@ -12,22 +12,22 @@
 <body>
 
 <nav class="w3-bar w3-black w3-text-white">
-  <a href="HomePage.html" class="w3-button w3-bar-item">Home</a>
-  <a href="Workouts.html" class="w3-button w3-bar-item">Workouts</a>
-  <a href="MyData.html" class="w3-button w3-bar-item">My Data</a>
-  <a href="MyAccount.html" class="w3-button w3-bar-item">My Account</a>
+  <a href="{{ url_for('home')}}" class="w3-button w3-bar-item">Home</a>
+  <a href="{{ url_for('workouts')}}" class="w3-button w3-bar-item">Workouts</a>
+  <a href="{{ url_for('myData')}}" class="w3-button w3-bar-item">My Data</a>
+  <a href="{{ url_for('myAccount')}}" class="w3-button w3-bar-item">My Account</a>
 </nav>
 
 <nav class="w3-bar w3-gray">
-  <a href="CustomWorkouts.html" class="w3-button w3-bar-item">Create Custom Workout</a>
-  <a href="PrePlannedWorkouts.html" class="w3-button w3-bar-item">Pre-Planned Workouts</a>
-  <a href="OutdoorWorkouts.html" class="w3-button w3-bar-item">Outdoor Workouts</a>
+  <a href="{{ url_for('GymWorkouts')}}" class="w3-button w3-bar-item">Create Custom Workout</a>
+  <a href="{{ url_for('PrePlannedWorkouts')}}" class="w3-button w3-bar-item">Pre-Planned Workouts</a>
+  <a href="{{ url_for('OutdoorWorkouts')}}" class="w3-button w3-bar-item">Outdoor Workouts</a>
 </nav>
 
 
 <style>
 body {
-  background-image: url('gym.jpeg');
+  background-image: url('/static/gym.jpeg');
 }
 </style>
 

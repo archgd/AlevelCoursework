@@ -137,8 +137,15 @@ def create_outdoor_workout(email, exercisetype, distance, timetaken, date):
         print(e)
 
 
+def get_exercises
+    try:
+        sql = f'''SELECT exercise FROM gymworkouts WHERE email='{email}'''
+
+
+
+
+
 if __name__ == "__main__":
     db_file = "identifier.sqlite"
-
 
 

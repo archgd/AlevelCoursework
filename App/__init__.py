@@ -9,17 +9,16 @@ app = Flask(__name__)
 
 @app.route('/user/HomePage')
 def home():
-    return render_template('HomePage.html', active_page='Homepage.html ')
+    return render_template('HomePage.html')
 
 
-@app.route('/user/Workouts', methods=['POST', 'GET'])
+@app.route('/user/Workouts')
 def workouts():
-    if request.method == "GET":
-        return render_template("Workouts.html")
+    return render_template("Workouts.html")
 
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/1', methods=['POST', 'GET'])
 def login():
     if request.method == "GET":
         return render_template("LoginPage.html")
@@ -33,7 +32,7 @@ def login():
         try:
             if db.get_user(email, password) == user:  # checks if the email matches the password stored in the database
                 session['username'] = request.form['email']  # sets the session username to the email address
-                return redirect(url_for('workouts'))  # redirects the user to the home page of the website
+                return redirect(url_for('home'))  # redirects the user to the home page of the website
 
             else:
                 text = "Enter a valid email and password"
@@ -77,7 +76,7 @@ def GymWorkouts():
 
 #
 #
-@app.route('/1', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def OutdoorWorkouts():
     if request.method == "GET":
         return render_template('OutdoorWorkouts.html')
@@ -107,7 +106,20 @@ def PrePlannedWorkouts():
     return render_template("PrePlannedWorkouts.html")
 
 
-#
+@app.route('/21', methods=['POST', 'GET'])
+def myData():
+    if request.method == "GET":
+        return render_template('HomePage.html')
+    else:
+        return render_template('MyProgress.html')
+
+@app.route('/22', methods=['POST', 'GET'])
+def myAccount():
+    if request.method == "GET":
+        return render_template('HomePage.html')
+    else:
+        return render_template('MyProgress.html')
+
 
 
 if __name__ == '__main__':

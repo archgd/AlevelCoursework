@@ -8,12 +8,14 @@
     <title>Home Page</title>
 </head>
 <body>
-<nav class="w3-bar w3-light-gray">
-  <a href="Home.html" class="w3-button w3-bar-item">Home</a>
-  <a href="Workouts.html" class="w3-button w3-bar-item">Workouts</a>
-  <a href="MyData.html" class="w3-button w3-bar-item">My Data</a>
-  <a href="MyAccount.html" class="w3-button w3-bar-item">My Account</a>
+<nav class="w3-bar w3-black w3-text-white">
+  <a href="{{ url_for('home')}}" class="w3-button w3-bar-item">Home</a>
+  <a href="{{ url_for('workouts')}}" class="w3-button w3-bar-item">Workouts</a>
+  <a href="{{ url_for('myData')}}" class="w3-button w3-bar-item">My Data</a>
+  <a href="{{ url_for('myAccount')}}" class="w3-button w3-bar-item">My Account</a>
 </nav>
+
+
 
 <section class="w3-container w3-content w3-center" style="max-width:600px">
   <h2 class="w3-wide">Gym App</h2>
