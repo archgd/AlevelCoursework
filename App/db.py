@@ -137,12 +137,20 @@ def create_outdoor_workout(email, exercisetype, distance, timetaken, date):
         print(e)
 
 
-def get_exercises
+def get_exercises(email, exercise):
     try:
-        sql = f'''SELECT exercise FROM gymworkouts WHERE email='{email}'''
+        sql = f'''SELECT exercise FROM gymworkouts WHERE email='{email}' AND WHERE exercise='{exercise}'''
+
+    except sqlite3.Error as e:
+        print(e)
 
 
+def get_outdoor_exercises(email, exercise):
+    try:
+        sql = f'''SELECT ExerciseType FROM outdoorworkouts WHERE email='{email}' AND WHERE ExerciseType='{exercise}'''
 
+    except sqlite3.Error as e:
+        print(e)
 
 
 if __name__ == "__main__":

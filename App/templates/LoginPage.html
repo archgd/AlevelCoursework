@@ -3,16 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>LoginPage</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
     <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
+
+<nav class="w3-bar w3-black w3-text-white">
+  <a href="{{ url_for('login')}}" class="w3-button w3-bar-item">Login</a>
+  <a href="{{ url_for('register')}}" class="w3-button w3-bar-item">Sign Up</a>
+</nav>
+
+
+
+<style>
+body {
+    background-image: url('/static/websitebackground.jpeg');
+}
+</style>
+
+
 <div class="log-form">
   <h2>login to your account</h2>
   <form action =" /user/LoginPage" method="POST">
     <input type="text" title="email" name="email" placeholder="email" required/>
     <input type="password" title="password" name="password" placeholder="password" required/>
     <button type="submit" class="btn">login</button>
-    <a class="forgot" href="#">Forgot Password?</a>
+
   </form>
 </div><!--end log form -->
 </body>

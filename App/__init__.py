@@ -106,19 +106,30 @@ def PrePlannedWorkouts():
     return render_template("PrePlannedWorkouts.html")
 
 
-@app.route('/21', methods=['POST', 'GET'])
-def myData():
+@app.route('/MyProgressQuerey', methods=['POST', 'GET'])
+def myProgressQuerey():
     if request.method == "GET":
-        return render_template('HomePage.html')
-    else:
-        return render_template('MyProgress.html')
+        return render_template('MyProgressQuerey.html')
+    elif request.method == "POST":
+        email = request.form["email"]
+        exercise = request.form["type_of_exercise"]
 
-@app.route('/22', methods=['POST', 'GET'])
-def myAccount():
+        db.get_exercises(email, exercise)
+        return redirect(url_for('MyProgress'))
+    return render_template("MyProgressQuerey.html")
+
+
+@app.route('/MyOutdoorProgressQuerey', methods=['POST', 'GET'])
+def myOutdoorProgressQuerey():
     if request.method == "GET":
-        return render_template('HomePage.html')
-    else:
-        return render_template('MyProgress.html')
+        return render_template('MyOutdoorProgressQuerey.html')
+    elif request.method == "POST":
+        email = request.form["email"]
+        exercise = request.form["type_of_exercise"]
+
+        db.get_outdoor_exercises(email, exercise)
+        return redirect(url_for('MyOutdoorProgress'))
+    return render_template("MyOutdoorProgressQuerey.html")
 
 
 

@@ -3,9 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>SignUp</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
     <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
+
+<nav class="w3-bar w3-black w3-text-white">
+  <a href="{{ url_for('login')}}" class="w3-button w3-bar-item">Login</a>
+  <a href="{{ url_for('register')}}" class="w3-button w3-bar-item">Sign Up</a>
+
+</nav>
+
+<style>
+body {
+    background-image: url('/static/websitebackground.jpeg');
+}
+</style>
+
 <div class="log-form">
     <h2>Register an account</h2>
   <form action =" /" method="POST">
@@ -14,9 +28,7 @@
     <input type="text" name="surname" placeholder="Surname" required/>
     <input type="date" name="dob" placeholder="DOB" required/>
       <input type="password" name="password" placeholder="Password" required/>
-      <p>{{ text }}</p>
     <button type="Submit" class="btn">sign up</button>
-    <a class="Already have an account?" href="LoginPage.html">Already have an account?</a>
   </form>
 </div>
 </body>
