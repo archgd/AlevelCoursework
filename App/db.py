@@ -147,7 +147,7 @@ def get_exercises(email, exercise):
 
 def get_outdoor_exercises(email, exercise):
     try:
-        sql = f'''SELECT ExerciseType FROM outdoorworkouts WHERE email='{email}' AND WHERE ExerciseType='{exercise}'''
+        sql = f'''SELECT Distance, TimeTaken, DateCompleted FROM outdoorworkouts WHERE email='{email}' AND WHERE ExerciseType='{exercise}'''
 
     except sqlite3.Error as e:
         print(e)

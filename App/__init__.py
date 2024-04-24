@@ -5,14 +5,15 @@ from flask import Flask, render_template, request, session, redirect, url_for
 from App import db
 
 app = Flask(__name__)
+app.secret_key = "ILOVEKEYS"
 
 
-@app.route('/user/HomePage')
+@app.route('/8')
 def home():
     return render_template('HomePage.html')
 
 
-@app.route('/user/Workouts')
+@app.route('/')
 def workouts():
     return render_template("Workouts.html")
 
@@ -36,29 +37,32 @@ def login():
 
             else:
                 text = "Enter a valid email and password"
-                return redirect(url_for('login'))
+                return redirect(url_for('login'), text)
         except sqlite3.Error as e:
             print(e)
             return redirect(url_for('login', error=e))
 
 
-@app.route('/11', methods=['POST', 'GET'])
+@app.route('/8', methods=['POST', 'GET'])
 def register():
     if request.method == "GET":
         return render_template('SignUp.html')
     elif request.method == "POST":
+        print("first")
         email = request.form["email"]
         password = request.form["password"]
         forename = request.form["forename"]
         surname = request.form["surname"]
         dob = request.form["dob"]
+        print("second")
+
+        session['username'] = request.form["email"]
 
         db.create_user(email.lower(), password, forename.lower(), surname.lower(), dob)
-        return redirect(url_for('login'))
-    return render_template("SignUp.html")
+        return redirect(url_for('MyOutdoorProgressQuerey'))
 
 
-@app.route('/47', methods=['POST', 'GET'])
+@app.route('/GymWorkouts', methods=['POST', 'GET'])
 def GymWorkouts():
     if request.method == "GET":
         return render_template('CustomWorkouts.html')
@@ -76,7 +80,7 @@ def GymWorkouts():
 
 #
 #
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/OutdoorWorkouts', methods=['POST', 'GET'])
 def OutdoorWorkouts():
     if request.method == "GET":
         return render_template('OutdoorWorkouts.html')
@@ -92,7 +96,7 @@ def OutdoorWorkouts():
     return render_template("OutdoorWorkouts.html")
 #
 
-@app.route('/23', methods=['POST', 'GET'])
+@app.route('/PrePlannedWorkouts', methods=['POST', 'GET'])
 def PrePlannedWorkouts():
     if request.method == "GET":
         return render_template('PrePlannedWorkouts.html')
@@ -120,20 +124,18 @@ def myProgressQuerey():
 
 
 @app.route('/MyOutdoorProgressQuerey', methods=['POST', 'GET'])
-def myOutdoorProgressQuerey():
+def MyOutdoorProgressQuerey():
     if request.method == "GET":
-        return render_template('MyOutdoorProgressQuerey.html')
+        return render_template("MyOutdoorProgressQuerey.html")
     elif request.method == "POST":
-        email = request.form["email"]
-        exercise = request.form["type_of_exercise"]
-
+        email = session['username']
+        exercise = request.form["exercise"]
         db.get_outdoor_exercises(email, exercise)
-        return redirect(url_for('MyOutdoorProgress'))
-    return render_template("MyOutdoorProgressQuerey.html")
+        return render_template("MyOutdoorProgress.html", exercise = exercise)
 
 
 
 if __name__ == '__main__':
     app.run()
 
-# validation can be done in JS and HTML5 doesn't have to be server side :)
+

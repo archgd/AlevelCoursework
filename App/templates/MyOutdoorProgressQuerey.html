@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
      <link rel="stylesheet" href="../static/style.css">
-    <title>My Progress</title>
+    <title>My Outdoor Progress</title>
 </head>
 
 <body>
@@ -13,27 +13,31 @@
     <nav class="w3-bar w3-black w3-text-white">
       <a href="{{ url_for('home')}}" class="w3-button w3-bar-item">Home</a>
       <a href="{{ url_for('workouts')}}" class="w3-button w3-bar-item">Workouts</a>
-       <a href="{{ url_for('myOutdoorProgressQuerey')}}" class="w3-button w3-bar-item">My Outdoor Progress</a>
+       <a href="{{ url_for('MyOutdoorProgressQuerey')}}" class="w3-button w3-bar-item">My Outdoor Progress</a>
         <a href="{{ url_for('myProgressQuerey')}}" class="w3-button w3-bar-item">My Progress</a>
     </nav>
 
-background-image: url('/static/gym.jpeg');
+<style>
+body {
+    background-image: url('/static/websitebackground2.jpeg');
+}
+</style>
 
 
     <div class="log-form dropdown-content">
-        <h2 style="align-content: center">Choose the outdoor exercise you would like to view progress of and enter your email</h2>
-        <form action =" /" method="POST">
-            <label for="exercise"></label><select name="exercise" id="exercise" required autofocus >
-                <option value="Run">Run </option>
+        <h2 style="align-content: center">Choose the outdoor exercise you would like to view progress of</h2>
+        <form action ="/MyOutdoorProgressQuerey" method="POST">
+            <label for="exercise"></label>
+            <select name="exercise" id="exercise" required autofocus>
+                  <option value="Run">Run</option>
                   <option value="Walk">Walk</option>
                   <option value="Swim">Swim</option>
                   <option value="Cycle">Cycle</option>
-
               <label>
                   <input type="text" name="email" placeholder="Email" required/>
               </label>
 
-          </select>
+            </select>
             <button type="Submit" class="btn"> See your progress</button>
         </form>
 

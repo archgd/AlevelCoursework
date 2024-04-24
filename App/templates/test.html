@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+ <title>Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body>
+
+<nav class="w3-bar w3-black w3-text-white">
+  <a href="{{ url_for('home')}}" class="w3-button w3-bar-item">Home</a>
+  <a href="{{ url_for('workouts')}}" class="w3-button w3-bar-item">Workouts</a>
+   <a href="{{ url_for('MyOutdoorProgressQuerey')}}" class="w3-button w3-bar-item">My Outdoor Progress</a>
+        <a href="{{ url_for('myProgressQuerey')}}" class="w3-button w3-bar-item">My Progress</a>
+</nav>
+
+
+
+<style>
+body {
+    background-image: url('/static/gym.jpeg');
+}
+</style>
+
+<canvas id="blank" style="width:100%;max-width:600px"></canvas>
+
+<div align="center">
+<canvas id="myChart" style="width:100%;max-width:900px;background-color: white"></canvas>
+
+<script>
+const xValues = [];
+const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgb(255,0,0)",
+      borderColor: "rgba(0,0,0,1)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 1, max:200}}],
+    }
+  }
+});
+</script>
+</div>
+</body>
+</html>
