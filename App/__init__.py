@@ -2,32 +2,31 @@ import sqlite3
 import flask
 from flask import Flask, render_template, request, session, redirect, url_for
 
-from App import db
+from App import db  # imports all of the functions written in db.py
 
 app = Flask(__name__)
 app.secret_key = "ILOVEKEYS"
 
 
-@app.route('/8')
+@app.route('/home')
 def home():
     return render_template('HomePage.html')
+#this app route renders the home page for the user and nothing else
 
-
-@app.route('/')
+@app.route('/workouts')
 def workouts():
     return render_template("Workouts.html")
+#this app route renders the workouts landing page for the user and nothing else
 
-
-
-@app.route('/1', methods=['POST', 'GET'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == "GET":
         return render_template("LoginPage.html")
-    # default loads the login page
+    # default loads the login page when the app is run
 
     elif request.method == "POST":  # only runs if the user submits the login form
-        email = request.form["email"]
-        password = request.form["password"]
+        email = request.form["email"] #the email form on the webpage is set as the local variable email
+        password = request.form["password"] #the password form on the webpage is set as the local variable password
         user = [(email, password)]  # stores the email and password from the form as a local variable
 
         try:
@@ -36,30 +35,30 @@ def login():
                 return redirect(url_for('home'))  # redirects the user to the home page of the website
 
             else:
-                text = "Enter a valid email and password"
+                text = "Enter a valid email and password" #raises error message to the user letting them know that the combination entered is incorrect
                 return redirect(url_for('login'), text)
         except sqlite3.Error as e:
             print(e)
             return redirect(url_for('login', error=e))
 
 
-@app.route('/8', methods=['POST', 'GET'])
+@app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == "GET":
-        return render_template('SignUp.html')
-    elif request.method == "POST":
-        print("first")
-        email = request.form["email"]
-        password = request.form["password"]
-        forename = request.form["forename"]
-        surname = request.form["surname"]
-        dob = request.form["dob"]
-        print("second")
+        return render_template('SignUp.html')  # renders the registration page template
+    elif request.method == "POST":  # only runs if the user submits the login form
+        print("first")  # error checking
+        email = request.form["email"] # the email form on the webpage is set as the local variable email
+        password = request.form["password"] # the password form on the webpage is set as the local variable password
+        forename = request.form["forename"] # the forename form on the webpage is set as the local variable forename
+        surname = request.form["surname"] # the surname form on the webpage is set as the local variable surname
+        dob = request.form["dob"] # the dob form on the webpage is set as the local variable dob
+        print("second") # error checking
 
-        session['username'] = request.form["email"]
+        session['username'] = request.form["email"]  # sets the session username to the users email that they enter
 
-        db.create_user(email.lower(), password, forename.lower(), surname.lower(), dob)
-        return redirect(url_for('MyOutdoorProgressQuerey'))
+        db.create_user(email.lower(), password, forename.lower(), surname.lower(), dob)  # runs the db.py function create_user which adds the users details to the users table and creates their account
+        return redirect(url_for('home'))
 
 
 @app.route('/GymWorkouts', methods=['POST', 'GET'])
@@ -67,14 +66,14 @@ def GymWorkouts():
     if request.method == "GET":
         return render_template('CustomWorkouts.html')
     elif request.method == "POST":
-        Exercise = request.form["exercise"]
-        email = request.form['email']
-        Reps = request.form["reps"]
-        Weight = request.form["weight"]
-        DateDone = request.form["date completed"]
+        Exercise = request.form["exercise"]  # the exercise form on the webpage is set as the local variable exercise
+        email = request.form['email']  # the email form on the webpage is set as the local variable email
+        Reps = request.form["reps"]  # the reps form on the webpage is set as the local variable reps
+        Weight = request.form["weight"]  # the weight form on the webpage is set as the local variable weight
+        DateDone = request.form["date completed"]  # the date completed form on the webpage is set as the local variable DateDone
 
-        db.create_custom_workout(email, Exercise, Reps, Weight, DateDone)
-        return redirect(url_for('GymWorkouts'))
+        db.create_custom_workout(email, Exercise, Reps, Weight, DateDone)  # runs the db.py function create_custom_workout which adds the entered details to the gymworkouts table
+        return redirect(url_for('GymWorkouts'))  # after the operation is carried out the custom workouts page is returned so users can add more exercises if they wish
     return render_template("CustomWorkouts.html")
 
 
@@ -85,14 +84,14 @@ def OutdoorWorkouts():
     if request.method == "GET":
         return render_template('OutdoorWorkouts.html')
     elif request.method == "POST":
-        exercisetype = request.form["exercisetype"]
-        distance = request.form["distance"]
-        timetaken = request.form["timetaken"]
-        email = request.form["email"]
-        date = request.form["date"]
+        exercisetype = request.form["exercisetype"]  # the exercisetype form on the webpage is set as the local variable exercisetype
+        distance = request.form["distance"]  # the distance form on the webpage is set as the local variable distance
+        timetaken = request.form["timetaken"]  # the timetaken form on the webpage is set as the local variable timetaken
+        email = request.form["email"]  # the email form on the webpage is set as the local variable email
+        date = request.form["date"]  # the date form on the webpage is set as the local variable date
 
-        db.create_outdoor_workout(email, exercisetype, distance, timetaken, date)
-        return redirect(url_for('workouts'))
+        db.create_outdoor_workout(email, exercisetype, distance, timetaken, date)   # runs the db.py function create_outdoor_workout which adds the entered details to the outdoorworkouts table
+        return redirect(url_for('workouts')) # after the operation is carried out the workouts landing page is returned so users can navigate the website to other parts of it easily
     return render_template("OutdoorWorkouts.html")
 #
 
@@ -101,12 +100,12 @@ def PrePlannedWorkouts():
     if request.method == "GET":
         return render_template('PrePlannedWorkouts.html')
     elif request.method == "POST":
-        email = request.form["email"]
-        workout = request.form["type_of_exercise"]
-        datecompleted = request.form["datecompleted"]
+        email = request.form["email"]  # the email form on the webpage is set as the local variable email
+        workout = request.form["type_of_exercise"]  # the type_of_exercise form on the webpage is set as the local variable workout
+        datecompleted = request.form["datecompleted"]  # the datecompleted form on the webpage is set as the local variable datecompleted
 
-        db.record_planned_workout(email, workout, datecompleted)
-        return redirect(url_for('PrePlannedWorkouts'))
+        db.record_planned_workout(email, workout, datecompleted)  # runs the db.py record_planned_workout which adds the entered details to the preplannedworkouts table
+        return redirect(url_for('workouts'))  # after the operation is carried out the workouts landing page is returned so users can navigate the website to other parts of it easily
     return render_template("PrePlannedWorkouts.html")
 
 
@@ -115,25 +114,34 @@ def myProgressQuerey():
     if request.method == "GET":
         return render_template('MyProgressQuerey.html')
     elif request.method == "POST":
-        email = request.form["email"]
-        exercise = request.form["type_of_exercise"]
+        email = request.form["email"]  # requests the users email so that exercises they have entered to the database can be retrieved
+        exercise = request.form["type_of_exercise"]  # requests the type of exercise that the user wants to recieve their data for
 
-        db.get_exercises(email, exercise)
-        return redirect(url_for('MyProgress'))
+        db.get_exercises(email, exercise)  # the db.py function get_exercises is run which takes the users inputs as parameters and then returns the necessary data to be put into the table
+        return redirect(url_for('MyProgress'))  # once the user has entered and submitted their data then the my progress page is returned which has the table format of the requested users data on it
     return render_template("MyProgressQuerey.html")
 
 
-@app.route('/MyOutdoorProgressQuerey', methods=['POST', 'GET'])
-def MyOutdoorProgressQuerey():
+@app.route('/')
+@app.route('/MyOutdoorProgressQuery', methods=['POST', 'GET'])
+def MyOutdoorProgressQuery():
     if request.method == "GET":
-        return render_template("MyOutdoorProgressQuerey.html")
+        print("hi")
+        return render_template("MyOutdoorProgressQuery.html")
+        print("test")
     elif request.method == "POST":
-        email = session['username']
-        exercise = request.form["exercise"]
-        db.get_outdoor_exercises(email, exercise)
-        return render_template("MyOutdoorProgress.html", exercise = exercise)
+        email = request.form ["email"]  # requests the users email so that exercises they have entered to the database can be retrieved
+        exercise = request.form["exercise"]  # requests the type of exercise that the user wants to recieve their data for
+        res = db.get_outdoor_exercises(email, exercise)  # the db.py function get_outdoor_exercises is run which takes the users inputs as parameters and then returns the necessary data to be put into the table
+        print (res)
+        return render_template("MyOutdoorProgress.html")  # once the user has entered and submitted their data then the my outdoor progress page is returned which has the table format of the requested users data on it
 
 
+# @app.route('/exercises', methods=['GET'])
+# def printExercises():
+#     the_array = []
+#     for i in range(1, )
+#
 
 if __name__ == '__main__':
     app.run()

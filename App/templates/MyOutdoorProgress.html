@@ -14,7 +14,7 @@
     <nav class="w3-bar w3-black w3-text-white">
       <a href="{{ url_for('home')}}" class="w3-button w3-bar-item">Home</a>
       <a href="{{ url_for('workouts')}}" class="w3-button w3-bar-item">Workouts</a>
-       <a href="{{ url_for('MyOutdoorProgressQuerey')}}" class="w3-button w3-bar-item">My Outdoor Progress</a>
+       <a href="{{ url_for('MyOutdoorProgressQuery')}}" class="w3-button w3-bar-item">My Outdoor Progress</a>
         <a href="{{ url_for('myProgressQuerey')}}" class="w3-button w3-bar-item">My Progress</a>
     </nav>
 
@@ -26,29 +26,29 @@ body {
 
 
 
-    <div class="log-form dropdown-content">
-        <script>
-            var xValues = "";
-            var yValues = "";
-            for (int i = 0; i < {{exercise|tojson}}.length; i++){
-                xValues.push(({{exercise|tojson}}[i])[2])
-                yValues.push(({{exercise|tojson}}[i])[0]/({{exercise|tojson}}[i])[1])
-            }
+<!--    <div class="log-form dropdown-content">-->
+<!--        <script>-->
+<!--            var xValues = "";-->
+<!--            var yValues = "";-->
+<!--            for (int i = 0; i < {{exercise|tojson}}.length; i++){-->
+<!--                xValues.push(({{exercise|tojson}}[i])[2])-->
+<!--                yValues.push(({{exercise|tojson}}[i])[0]/({{exercise|tojson}}[i])[1])-->
+<!--            }-->
 
-            new Chart("myChart", {
-                type: "line",
-                data: {
-                    labels: xValues,
-                    datasets: [{
-                        backgroundColor: "red",
-                        data: yValues
-                    }]
-                },
-                options:{...}
-            });
-        </script>
+<!--            new Chart("myChart", {-->
+<!--                type: "line",-->
+<!--                data: {-->
+<!--                    labels: xValues,-->
+<!--                    datasets: [{-->
+<!--                        backgroundColor: "red",-->
+<!--                        data: yValues-->
+<!--                    }]-->
+<!--                },-->
+<!--                options:{...}-->
+<!--            });-->
+<!--        </script>-->
 
-    </div>
+<!--    </div>-->
 </body>
 
 </html>

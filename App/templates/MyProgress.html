@@ -22,31 +22,20 @@ body {
 </style>
 
 
-<!--<script>-->
-<!--    var xValues = {{ exercise | tojson }};-->
-<!--    var yValues = {{ weight | tojson}};-->
-<!--    var barColors = ["red","blue","green","orange","purple","yellow"]-->
+<table>
+  <tr>
+    <th>Company</th>
+    <th>Contact</th>
+    <th>Country</th>
+  </tr>
+    {% for item in array %}
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
 
-<!--    new Chart("customExercises",{-->
-<!--        type: "bar",-->
-<!--        data: {-->
-<!--            labels: xValues,-->
-<!--            datasets: [{-->
-<!--                backgroundColor: barColors,-->
-<!--                data: yValues-->
-<!--            }]-->
-<!--        },-->
-<!--        options: {-->
-<!--            legend:{display: false},-->
-<!--            title:{-->
-<!--                display: true,-->
-<!--                text: "Custom exercises"-->
-<!--            }-->
-<!--        }-->
-
-<!--    });-->
-<!--</script>-->
-
+</table>
 
 
 </body>

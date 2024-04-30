@@ -13,7 +13,7 @@
     <nav class="w3-bar w3-black w3-text-white">
       <a href="{{ url_for('home')}}" class="w3-button w3-bar-item">Home</a>
       <a href="{{ url_for('workouts')}}" class="w3-button w3-bar-item">Workouts</a>
-       <a href="{{ url_for('MyOutdoorProgressQuerey')}}" class="w3-button w3-bar-item">My Outdoor Progress</a>
+       <a href="{{ url_for('MyOutdoorProgressQuery')}}" class="w3-button w3-bar-item">My Outdoor Progress</a>
         <a href="{{ url_for('myProgressQuerey')}}" class="w3-button w3-bar-item">My Progress</a>
     </nav>
 
@@ -26,7 +26,7 @@ body {
 
     <div class="log-form dropdown-content">
         <h2 style="align-content: center">Choose the outdoor exercise you would like to view progress of</h2>
-        <form action ="/MyOutdoorProgressQuerey" method="POST">
+        <form action ="/MyOutdoorProgressQuery" method="POST">
             <label for="exercise"></label>
             <select name="exercise" id="exercise" required autofocus>
                   <option value="Run">Run</option>

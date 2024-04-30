@@ -6,44 +6,23 @@ import json
 
 
 
-def create_user(email, password, forename, surname, dob):
+def create_user(email, password, forename, surname, dob): #this function is called in init.py in the register app route and adds the users inputs from the html forms into the user SQL table
     try:
-        sql = f'''INSERT INTO user VALUES ('{email}', '{password}', '{forename}','{surname}','{dob}');'''
+        sql = f'''INSERT INTO user VALUES ('{email}', '{password}', '{forename}','{surname}','{dob}');'''  #inserts the users information into the user SQL table
         run_query(sql)
 
     except sqlite3.Error as e:
         print(e)
 
 
-def update_user(email, oldPassword, newPassword):
-    try:
-        sql = f'''UPDATE user SET password='{newPassword}' WHERE email='{email}', AND password='{oldPassword}';'''
-        run_query(sql)
-    except sqlite3.Error as e:
-        raise e
-
-
-def get_user(email, password):
-    try:
-        sql = f''' SELECT email and password from user WHERE email = '{email}', '{password}';'''
-        run_query(sql)
-    except sqlite3.Error as e:
-        raise e
-
-
-def login(emailcheck, passwordcheck):
-    sql1 = f'''SELECT * FROM user WHERE email = '{emailcheck}' AND password = '{passwordcheck}';'''
-    bool(run_query(sql1))
-
-
-def remove_user(emailcheck, passwordcheck):
-    sql1 = f'''DELETE FROM user WHERE email = '{emailcheck}' AND password = '{passwordcheck}';'''
-    run_query(sql1)
+def login(emailcheck, passwordcheck): #this function called in init.py and takes the parameters from the users input to a HTML form on the compares the inputs to the stored values in the user SQL table before granting the user access to the website
+    sql = f'''SELECT * FROM user WHERE email = '{emailcheck}' AND password = '{passwordcheck}';'''
+    bool(run_query(sql))
 
 
 def run_query(query):
     try:
-        conn = sqlite3.connect("identifier.sqlite")
+        conn = sqlite3.connect("../identifier.sqlite")
         cursor = conn.cursor()
         cursor.execute(query)
         conn.commit()
@@ -56,7 +35,7 @@ def run_query(query):
         conn.close()
 
 
-def clear_table(table):
+def clear_table(table):  #this function is used to clear the table during testing when test data is entered
     try:
         sql = f'''DELETE FROM 'user';'''
         run_query(sql)
@@ -75,85 +54,55 @@ def get_all_users():
     return users
 
 
-def check_password(password):
-    min_length = 10
-    require = {"up": False, "low": False, "digit": False, "symbol": False}
-    for char in password:
-        if char.isupper():
-            require["up"] = True
-        elif char.islower():
-            require["low"] = True
-        elif char.isdigit():
-            require["digit"] = True
-        elif not char.isalnum():
-            require["symbol"] = True
-    if len(password) < min_length:
-        raise ValueError("password too short")
-
-
-# makes regular expression for validating email
-regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
-
-
-# validates the email entry conforms with the right structure
-def check_email(email):
-    # the regular expression is passed and the email string is passed into the fullmatch() method
-    if len.email > 30 or len.email < 5 or (re.fullmatch(regex, email)):
-        print("Valid Email")
-
-    else:
-        raise ValueError("the email you have entered is not in the correct format")
-
-
-def check_name(forename, surname):
-    if len.forename > 30 or len.forename < 1 or len.surname > 30 or len.surname < 1:
-        raise ValueError("the name you have entered is too long or too short")
-
-
-def create_custom_workout(email, exercise, weight, reps, datedone):
+def create_custom_workout(email, exercise, weight, reps, datedone):  #takes the users input and allows them to store custom exercises
     try:
-        sql = f'''INSERT INTO gymworkouts VALUES ('{email}', '{exercise}', '{weight}','{reps}','{datedone}');'''
+        sql = f'''INSERT INTO gymworkouts VALUES ('{email}', '{exercise}', '{weight}','{reps}','{datedone}');'''  #users data is added to the gymworkouts SQL table
         run_query(sql)
 
     except sqlite3.Error as e:
         print(e)
 
 
-def record_planned_workout(email, workout, datecompleted):
+def record_planned_workout(email, workout, datecompleted):  #takes the users input and allows them to store preplanned exercises
     try:
-        sql = f'''INSERT INTO preplannedworkouts VALUES ('{email}', '{workout}', '{datecompleted}');'''
+        sql = f'''INSERT INTO preplannedworkouts VALUES ('{email}', '{workout}', '{datecompleted}');'''  #adds the users input to the preplannedworkouts SQL table
         run_query(sql)
 
     except sqlite3.Error as e:
         print(e)
 
 
-def create_outdoor_workout(email, exercisetype, distance, timetaken, date):
+def create_outdoor_workout(email, exercisetype, distance, timetaken, date):  #takes the users input and allows them to store outdoor exercises
     try:
-        sql = f'''INSERT INTO outdoorworkouts VALUES ('{email}', '{exercisetype}', '{distance}','{timetaken}','{date}');'''
+        sql = f'''INSERT INTO outdoorworkouts VALUES ('{email}', '{exercisetype}', '{distance}','{timetaken}','{date}');'''  #adds the users input to the outdoorworkouts SQL table
         run_query(sql)
 
     except sqlite3.Error as e:
         print(e)
 
 
-def get_exercises(email, exercise):
+def get_exercises(email, exercise):  #gets the users input to and retrieves the data from the gymworkouts SQL table
     try:
-        sql = f'''SELECT exercise FROM gymworkouts WHERE email='{email}' AND WHERE exercise='{exercise}'''
-
+        sql = f'''SELECT exercise, Weight, Reps, DateDone FROM gymworkouts WHERE email='{email}' AND WHERE exercise='{exercise}'''  #
+        res = run_query(sql)
+        return res
     except sqlite3.Error as e:
         print(e)
 
 
-def get_outdoor_exercises(email, exercise):
+def get_outdoor_exercises(email, exercise):  #gets the users input to and retrieves the data from the outdoor SQL table
     try:
-        sql = f'''SELECT Distance, TimeTaken, DateCompleted FROM outdoorworkouts WHERE email='{email}' AND WHERE ExerciseType='{exercise}'''
+        sql = f'''SELECT ExerciseType, Distance, TimeTaken, DateCompleted FROM outdoorworkouts WHERE email='{email}' AND ExerciseType='{exercise}'; '''
 
+        res = run_query(sql)
+        print(sql, res)
+        return res
     except sqlite3.Error as e:
         print(e)
 
 
 if __name__ == "__main__":
-    db_file = "identifier.sqlite"
+    db_file = "../identifier.sqlite"
+    print(get_outdoor_exercises("archgd912@outlook.com", "Run"))
 
 
