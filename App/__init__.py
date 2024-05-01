@@ -41,7 +41,7 @@ def login():
             print(e)
             return redirect(url_for('login', error=e))
 
-
+@app.route('/')
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == "GET":
@@ -112,17 +112,21 @@ def PrePlannedWorkouts():
 @app.route('/MyProgressQuerey', methods=['POST', 'GET'])
 def myProgressQuerey():
     if request.method == "GET":
-        return render_template('MyProgressQuerey.html')
+        print("hi")
+        return render_template("MyProgressQuerey.html")
+        print("test")
     elif request.method == "POST":
+        print("test2")
         email = request.form["email"]  # requests the users email so that exercises they have entered to the database can be retrieved
-        exercise = request.form["type_of_exercise"]  # requests the type of exercise that the user wants to recieve their data for
+        exercise = request.form["exercise"]  # requests the type of exercise that the user wants to recieve their data for
+        print("false")
+        res = db.get_exercises(email, exercise)  # the db.py function get_exercises is run which takes the users inputs as parameters and then returns the necessary data to be put into the table
+        print("true")
+        print(res)
+        return render_template("MyProgress.html",array=res)  # once the user has entered and submitted their data then the my gym progress page is returned which has the table format of the requested users data on it
 
-        db.get_exercises(email, exercise)  # the db.py function get_exercises is run which takes the users inputs as parameters and then returns the necessary data to be put into the table
-        return redirect(url_for('MyProgress'))  # once the user has entered and submitted their data then the my progress page is returned which has the table format of the requested users data on it
-    return render_template("MyProgressQuerey.html")
 
 
-@app.route('/')
 @app.route('/MyOutdoorProgressQuery', methods=['POST', 'GET'])
 def MyOutdoorProgressQuery():
     if request.method == "GET":
@@ -133,15 +137,11 @@ def MyOutdoorProgressQuery():
         email = request.form ["email"]  # requests the users email so that exercises they have entered to the database can be retrieved
         exercise = request.form["exercise"]  # requests the type of exercise that the user wants to recieve their data for
         res = db.get_outdoor_exercises(email, exercise)  # the db.py function get_outdoor_exercises is run which takes the users inputs as parameters and then returns the necessary data to be put into the table
-        print (res)
-        return render_template("MyOutdoorProgress.html")  # once the user has entered and submitted their data then the my outdoor progress page is returned which has the table format of the requested users data on it
+        # print (res)
+        return render_template("MyOutdoorProgress.html", array=res)  # once the user has entered and submitted their data then the my outdoor progress page is returned which has the table format of the requested users data on it
 
 
-# @app.route('/exercises', methods=['GET'])
-# def printExercises():
-#     the_array = []
-#     for i in range(1, )
-#
+
 
 if __name__ == '__main__':
     app.run()

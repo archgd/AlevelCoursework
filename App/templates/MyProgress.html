@@ -11,29 +11,34 @@
 <nav class="w3-bar w3-black w3-text-white">
   <a href="{{ url_for('home')}}" class="w3-button w3-bar-item">Home</a>
   <a href="{{ url_for('workouts')}}" class="w3-button w3-bar-item">Workouts</a>
-   <a href="{{ url_for('MyOutdoorProgressQuerey')}}" class="w3-button w3-bar-item">My Outdoor Progress</a>
+   <a href="{{ url_for('MyOutdoorProgressQuery')}}" class="w3-button w3-bar-item">My Outdoor Progress</a>
         <a href="{{ url_for('myProgressQuerey')}}" class="w3-button w3-bar-item">My Progress</a>
 </nav>
 
-<style>
-body {
-    background-image: url('/static/websitebackground.jpeg');
-}
-</style>
-
+<!--<style>-->
+<!--body {-->
+<!--    background-image: url('/static/websitebackground.jpeg');-->
+<!--}-->
+<!--</style>-->
 
 <table>
   <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
+    <th>Exercise</th>
+    <th>Weight</th>
+    <th>Reps</th>
+    <th>Sets</th>
+    <th>Date Completed</th>
   </tr>
     {% for item in array %}
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
+    <tr>
+        {% for exercise in item %}
+
+
+        <td>{{exercise}}</td>
+
+    {% endfor %}
+        </tr>
+{% endfor %}
 
 </table>
 

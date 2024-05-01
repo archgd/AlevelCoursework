@@ -22,7 +22,7 @@ def login(emailcheck, passwordcheck): #this function called in init.py and takes
 
 def run_query(query):
     try:
-        conn = sqlite3.connect("../identifier.sqlite")
+        conn = sqlite3.connect("identifier.sqlite")
         cursor = conn.cursor()
         cursor.execute(query)
         conn.commit()
@@ -83,7 +83,8 @@ def create_outdoor_workout(email, exercisetype, distance, timetaken, date):  #ta
 
 def get_exercises(email, exercise):  #gets the users input to and retrieves the data from the gymworkouts SQL table
     try:
-        sql = f'''SELECT exercise, Weight, Reps, DateDone FROM gymworkouts WHERE email='{email}' AND WHERE exercise='{exercise}'''  #
+        sql = f'''SELECT exercise, Weight, Reps, DateDone FROM gymworkouts WHERE email='{email}' AND exercise='{exercise}'''  #
+
         res = run_query(sql)
         return res
     except sqlite3.Error as e:
@@ -102,7 +103,6 @@ def get_outdoor_exercises(email, exercise):  #gets the users input to and retrie
 
 
 if __name__ == "__main__":
-    db_file = "../identifier.sqlite"
     print(get_outdoor_exercises("archgd912@outlook.com", "Run"))
 
 
