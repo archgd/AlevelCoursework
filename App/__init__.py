@@ -41,7 +41,7 @@ def login():
 
             else:
                 text = "Enter a valid email and password" #raises error message to the user letting them know that the combination entered is incorrect
-                return redirect(url_for('login'),text)
+                return render_template("incorrectPassword.html")
 
         except sqlite3.Error as e:
             print(e)
