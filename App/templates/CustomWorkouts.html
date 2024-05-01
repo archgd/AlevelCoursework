@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
-     <link rel="stylesheet" href="../static/style.css">
-
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+    <link rel="stylesheet" href="../static/style.css">
 
     <title>Custom Workouts</title>
 </head>
@@ -14,8 +13,8 @@
 <nav class="w3-bar w3-black w3-text-white">
   <a href="{{ url_for('home')}}" class="w3-button w3-bar-item">Home</a>
   <a href="{{ url_for('workouts')}}" class="w3-button w3-bar-item">Workouts</a>
-   <a href="{{ url_for('MyOutdoorProgressQuery')}}" class="w3-button w3-bar-item">My Outdoor Progress</a>
-        <a href="{{ url_for('myProgressQuerey')}}" class="w3-button w3-bar-item">My Progress</a>
+  <a href="{{ url_for('MyOutdoorProgressQuery')}}" class="w3-button w3-bar-item">My Outdoor Progress</a>
+  <a href="{{ url_for('myProgressQuerey')}}" class="w3-button w3-bar-item">My Progress</a>
 </nav>
 
 <nav class="w3-bar w3-gray">
@@ -40,13 +39,13 @@ body {
 <section class="w3-container w3-content w3-left " style="max-width: 300px">
     <section class="w3- w3-white w3-container" style="height: 500px">
     <p style="align-content: space-evenly"> To create a custom workout just start by adding exercises from the drop-down menu, please enter the amount of reps you have completed, the weight they were completed at, the date it was completed and your email</p>
-        <p style="align-content: space-evenly"> Custom workouts let you tailor your workouts to you. If you are new to the gym we recommend using pre-planned workouts. If you would like to record a run, swim, cycle or walk please use the outdoor workouts section</p>
+    <p style="align-content: space-evenly"> Custom workouts let you tailor your workouts to you. If you are new to the gym we recommend using pre-planned workouts. If you would like to record a run, swim, cycle or walk please use the outdoor workouts section</p>
     </section>
 </section>
 
 <div class="log-form dropdown-content">
     <h2>Choose exercise</h2>
-    <form action =" /" method="POST">
+    <form action ="/GymWorkouts" method="POST">
         <label for="exercise"></label><select name="exercise" id="exercise" required autofocus >
           <option value="Please select an exercise">please select an exercise </option>
           <option value="Dumbbell curl">dumbbell curl </option>

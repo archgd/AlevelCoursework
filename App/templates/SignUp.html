@@ -5,6 +5,46 @@
     <title>SignUp</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
     <link rel="stylesheet" href="../static/style.css">
+
+<script>
+  function validatePassword() {
+    let password = document.getElementById("password").value;
+    let specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters long");
+      return false;
+    }
+    if (!specialChars.test(password)) {
+      alert("Password must contain at least one special character");
+      return false;
+    }
+    return true;
+  }
+</script>
+
+
+
+ <script>
+  function validateDate() {
+    let inputDate = new Date(document.getElementById("date").value);
+    let currentDate = new Date();
+    let pastDate = 1954
+
+    if (inputDate > currentDate) {
+      alert("Please enter a date that is not in the future.");
+      return false;
+    }
+
+    if (inputDate < pastDate) {
+        alert("Please enter a more recent date.")
+        return false;
+    }
+    return true;
+  }
+</script>
+
+
 </head>
 <body>
 
@@ -32,12 +72,12 @@ body {
 
 <div class="log-form">
     <h2>Register an account</h2>
-  <form action ="/register" method="POST">
-    <input type="email" name="email" placeholder="Email" oninput="limitInputLength(this, 50)" required/>
-    <input type="text" name="forename" placeholder="Forename" oninput="limitInputLength(this, 30)" required/>
-    <input type="text" name="surname" placeholder="Surname" oninput="limitInputLength(this, 30)" required/>
-    <input type="date" name="dob" placeholder="DOB" required/>
-      <input type="password" name="password" placeholder="Password" oninput="limitInputLength(this, 50)" required/>
+  <form action ="/register" method="POST" onsubmit="return validatePassword(), validateDate()">
+    <input type="email" name="email" placeholder="Email" maxlength="50" required/>
+    <input type="text" name="forename" placeholder="Forename" maxlength="50" required/>
+    <input type="text" name="surname" placeholder="Surname" maxlength="30" required/>
+    <input id="date" type="date" name="dob" placeholder="DOB" required maxlength="8"/>
+    <input id="password" type="password" name="password" placeholder="Password" maxlength="50" required/>
     <button type="Submit" class="btn">sign up</button>
   </form>
 </div>

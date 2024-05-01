@@ -2,9 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+
     <title>My Progress</title>
+
+    <style>
+        table, th, td {border: 1px solid black;border-collapse: collapse;}
+        tr:nth-child(odd) {background-color: #D6EEEE;}
+    </style>
+
 </head>
 <body>
 
@@ -26,7 +35,6 @@
     <th>Exercise</th>
     <th>Weight</th>
     <th>Reps</th>
-    <th>Sets</th>
     <th>Date Completed</th>
   </tr>
     {% for item in array %}

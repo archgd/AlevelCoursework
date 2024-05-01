@@ -83,7 +83,7 @@ def create_outdoor_workout(email, exercisetype, distance, timetaken, date):  #ta
 
 def get_exercises(email, exercise):  #gets the users input to and retrieves the data from the gymworkouts SQL table
     try:
-        sql = f'''SELECT exercise, Weight, Reps, DateDone FROM gymworkouts WHERE email='{email}' AND exercise='{exercise}'''  #
+        sql = f'''SELECT Exercise, Weight, Reps, DateDone FROM gymworkouts WHERE email='{email}' AND Exercise='{exercise}'; '''
 
         res = run_query(sql)
         return res
@@ -96,7 +96,6 @@ def get_outdoor_exercises(email, exercise):  #gets the users input to and retrie
         sql = f'''SELECT ExerciseType, Distance, TimeTaken, DateCompleted FROM outdoorworkouts WHERE email='{email}' AND ExerciseType='{exercise}'; '''
 
         res = run_query(sql)
-        print(sql, res)
         return res
     except sqlite3.Error as e:
         print(e)

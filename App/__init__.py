@@ -122,7 +122,7 @@ def myProgressQuerey():
         print("false")
         res = db.get_exercises(email, exercise)  # the db.py function get_exercises is run which takes the users inputs as parameters and then returns the necessary data to be put into the table
         print("true")
-        print(res)
+        # print(res)
         return render_template("MyProgress.html",array=res)  # once the user has entered and submitted their data then the my gym progress page is returned which has the table format of the requested users data on it
 
 
@@ -137,7 +137,7 @@ def MyOutdoorProgressQuery():
         email = request.form ["email"]  # requests the users email so that exercises they have entered to the database can be retrieved
         exercise = request.form["exercise"]  # requests the type of exercise that the user wants to recieve their data for
         res = db.get_outdoor_exercises(email, exercise)  # the db.py function get_outdoor_exercises is run which takes the users inputs as parameters and then returns the necessary data to be put into the table
-        # print (res)
+        print (res)
         return render_template("MyOutdoorProgress.html", array=res)  # once the user has entered and submitted their data then the my outdoor progress page is returned which has the table format of the requested users data on it
 
 
