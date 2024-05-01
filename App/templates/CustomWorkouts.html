@@ -7,6 +7,50 @@
     <link rel="stylesheet" href="../static/style.css">
 
     <title>Custom Workouts</title>
+
+<script>
+  function validateReps() {
+    let reps = document.getElementById("reps").value;
+    let max = "100";
+    let min = "1";
+
+
+    if (max<reps) {
+      alert("The amount of reps you have entered is too many.");
+      return false;
+    }
+
+    if (min>reps){
+        alert("The amount of reps you have entered is too few.");
+      return false;
+    }
+    return true;
+  }
+</script>
+
+
+
+<script>
+  function validateWeight() {
+    let weight = document.getElementById("weight").value;
+    let max = "1000";
+    let min = "1";
+
+
+    if (max<weight) {
+      alert("The weight you have entered is too high.");
+      return false;
+    }
+
+    if (min>weight){
+        alert("The weight you have entered is too low.");
+      return false;
+    }
+    return true;
+  }
+</script>
+
+
 </head>
 <body>
 
@@ -45,7 +89,7 @@ body {
 
 <div class="log-form dropdown-content">
     <h2>Choose exercise</h2>
-    <form action ="/GymWorkouts" method="POST">
+    <form action ="/GymWorkouts" method="POST" onsubmit="validateReps(), validateWeight()">
         <label for="exercise"></label><select name="exercise" id="exercise" required autofocus >
           <option value="Please select an exercise">please select an exercise </option>
           <option value="Dumbbell curl">dumbbell curl </option>
@@ -67,16 +111,16 @@ body {
           <option value="Crunch">crunch</option>
 
           <label>
-              <input type="text" name="email" placeholder="Email" required/>
+              <input type="text" name="email" placeholder="Email" required maxlength="50"/>
           </label>
           <label>
-              <input type="text" name="reps" placeholder="Reps" required/>
+              <input id="reps" type="text" name="reps" placeholder="Reps" required max="100" min="1"/>
           </label>
           <label>
-              <input type="text" name="weight" placeholder="Weight" required/>
+              <input id="weight" type="text" name="weight" placeholder="Weight" required max="1000" min="1"/>
           </label>
           <label>
-              <input type="date" name="date completed" placeholder="Date Completed" required/>
+              <input type="date" name="date completed" placeholder="Date Completed" required max="datetime"/>
           </label>
 
 

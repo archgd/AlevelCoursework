@@ -18,28 +18,34 @@ def workouts():
     return render_template("Workouts.html")
 #this app route renders the workouts landing page for the user and nothing else
 
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == "GET":
+        print("test2")
         return render_template("LoginPage.html")
     # default loads the login page when the app is run
-
     elif request.method == "POST":  # only runs if the user submits the login form
         email = request.form["email"] #the email form on the webpage is set as the local variable email
+        print(email)
         password = request.form["password"] #the password form on the webpage is set as the local variable password
+        print(password)
         user = [(email, password)]  # stores the email and password from the form as a local variable
-
+        print(user)
         try:
-            if db.get_user(email, password) == user:  # checks if the email matches the password stored in the database
-                session['username'] = request.form['email']  # sets the session username to the email address
+            res = db.get_user(email, password)
+            print(res)
+            if  res == user:  # checks if the email matches the password stored in the database
+                # session['username'] = request.form['email']  # sets the session username to the email address
                 return redirect(url_for('home'))  # redirects the user to the home page of the website
 
             else:
                 text = "Enter a valid email and password" #raises error message to the user letting them know that the combination entered is incorrect
-                return redirect(url_for('login'), text)
+                return redirect(url_for('login'),text)
+
         except sqlite3.Error as e:
             print(e)
-            return redirect(url_for('login', error=e))
+            return redirect(url_for('login'))
 
 @app.route('/')
 @app.route('/register', methods=['POST', 'GET'])
@@ -58,7 +64,7 @@ def register():
         session['username'] = request.form["email"]  # sets the session username to the users email that they enter
 
         db.create_user(email.lower(), password, forename.lower(), surname.lower(), dob)  # runs the db.py function create_user which adds the users details to the users table and creates their account
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
 
 
 @app.route('/GymWorkouts', methods=['POST', 'GET'])

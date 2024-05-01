@@ -39,7 +39,7 @@ body {
 
 <div class="log-form dropdown-content">
     <h2>Choose Pre-Planned Workout</h2>
-    <form action =" /" method="POST">
+    <form action ="/PrePlannedWorkouts" method="POST">
         <label for="PrePlannedWorkout"></label>
         <select name="type_of_exercise" id="PrePlannedWorkout" required autofocus >
           <option value="Biceps">Biceps </option>
@@ -51,11 +51,11 @@ body {
           <option value="Lats">Lats</option>
 
         <label>
-              <input type="text" name="email" placeholder="Email" required/>
+              <input type="text" name="email" placeholder="Email" required maxlength="50"/>
         </label>
 
         <label>
-              <input type="date" name="datecompleted" placeholder="Date Completed" required/>
+              <input type="date" name="datecompleted" placeholder="Date Completed" required max="datetime"/>
         </label>
 
 

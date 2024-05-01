@@ -101,6 +101,16 @@ def get_outdoor_exercises(email, exercise):  #gets the users input to and retrie
         print(e)
 
 
+def get_user(email, password):
+    try:
+        sql = f'''SELECT email, password FROM user WHERE email='{email}' AND password ='{password}'; '''
+
+        res = run_query(sql)
+        return res
+    except sqlite3.Error as e:
+        print(e)
+
+
 if __name__ == "__main__":
     print(get_outdoor_exercises("archgd912@outlook.com", "Run"))
 
